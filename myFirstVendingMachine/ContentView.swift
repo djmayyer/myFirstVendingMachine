@@ -15,16 +15,16 @@ struct VendingItem: Identifiable {
 
 struct ContentView: View {
     // Sample vending machine items
-    let items = [
-        VendingItem(name: "Coca Cola", price: 1.50),
-        VendingItem(name: "Chips Lays", price: 1.00),
-        VendingItem(name: "Snickers", price: 0.75),
-        VendingItem(name: "Water", price: 1.25),
-        VendingItem(name: "Sprite", price: 1.50)
-    ]
+//    let items = [
+//        VendingItem(name: "Coca Cola", price: 1.50),
+//        VendingItem(name: "Chips Lays", price: 1.00),
+//        VendingItem(name: "Snickers", price: 0.75),
+//        VendingItem(name: "Water", price: 1.25),
+//        VendingItem(name: "Sprite", price: 1.50)
+//    ]
     
     var body: some View {
-        
+       
         VStack {
             Image(systemName: "globe")
                 .imageScale(.large)
@@ -32,44 +32,44 @@ struct ContentView: View {
             Text("Welcome to the Vending Machine!")
                 .font(.title)
                 .padding()
-            
-            List(items) { item in
-                HStack {
-                    Text(item.name)
-                    Spacer()
-                    Text("$\(item.price, specifier: "%.2f")")
-                    Button(action: {
-                        // Handle purchase action
-                        print("Purchased \(item.name) for $\(item.price)")
-                    }) {
-                        Text("Buy")
-                            .foregroundColor(.white)
-                            .padding(.vertical, 5)
-                            .padding(.horizontal, 10)
-                            .background(Color.blue)
-                            .cornerRadius(5)
+            TabView{
+                ViewDrinks()
+                    .tabItem(){
+                        Image(systemName: "cup.and.saucer.fill")
+                        Text("Drinks")
                     }
-                }
-                .padding(.vertical, 5)
-            }
-        }
-        TabView{
-            ViewA()
+                ViewSnacks()
                 .tabItem(){
-                    Image(systemName: "pencil")
-                    Text("Settings")
+                    Image(systemName: "fork.knife")
+                    Text("Snacks")
                 }
-            ViewB()
-            .tabItem(){
-                Image(systemName: "phone.fill")
-                Text("Calls")
+                ViewSweets()
+                .tabItem(){
+                    Image(systemName: "birthday.cake")
+                    Text("Sweets")
+                }
             }
-            ViewC()
-            .tabItem(){
-                Image(systemName: "globe")
-                Text("World")
-            }
+//            List(items) { item in
+//                HStack {
+//                    Text(item.name)
+//                    Spacer()
+//                    Text("$\(item.price, specifier: "%.2f")")
+//                    Button(action: {
+//                        // Handle purchase action
+//                        print("Purchased \(item.name) for $\(item.price)")
+//                    }) {
+//                        Text("Buy")
+//                            .foregroundColor(.white)
+//                            .padding(.vertical, 5)
+//                            .padding(.horizontal, 10)
+//                            .background(Color.blue)
+//                            .cornerRadius(5)
+//                    }
+//                }
+//                .padding(.vertical, 5)
+//            }
         }
+        
         .padding()
     }
 }
