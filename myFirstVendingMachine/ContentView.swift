@@ -32,48 +32,56 @@ struct ContentView: View {
     var body: some View {
        
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Welcome to the Vending Machine!")
-                .font(.title)
-                .padding()
-            TabView{
-                ViewDrinks()
-                    .tabItem(){
-                        Image(systemName: "cup.and.saucer.fill")
-                        Text("Drinks")
-                    }
-                ViewSnacks()
-                .tabItem(){
-                    Image(systemName: "fork.knife")
-                    Text("Snacks")
-                }
-                ViewSweets()
-                .tabItem(){
-                    Image(systemName: "birthday.cake")
-                    Text("Sweets")
-                }
+            HStack{
+                Text("Welcome to the Vending Machine!")
+                    .font(.title)
+                    .padding()
+                Spacer()
+                Text("$\(userBalance,specifier: "%.2f")")
+                Image(systemName: "dollarsign.square.fill")
+                    .imageScale(.large)
+                    .foregroundStyle(.tint)
             }
-//            List(items) { item in
-//                HStack {
-//                    Text(item.name)
-//                    Spacer()
-//                    Text("$\(item.price, specifier: "%.2f")")
-//                    Button(action: {
-//                        // Handle purchase action
-//                        print("Purchased \(item.name) for $\(item.price)")
-//                    }) {
-//                        Text("Buy")
-//                            .foregroundColor(.white)
-//                            .padding(.vertical, 5)
-//                            .padding(.horizontal, 10)
-//                            .background(Color.blue)
-//                            .cornerRadius(5)
-//                    }
-//                }
-//                .padding(.vertical, 5)
-//            }
+            
+            
+            List(items) { item in
+                HStack {
+                    Text(item.name)
+                    Spacer()
+                    Text("$\(item.price, specifier: "%.2f")")
+                    Button(action: {
+                        // Handle purchase action
+                        userPurchase(item: item)
+                        //print("Purchased \(item.name) for $\(item.price)")
+                    }) {
+                        Text("Buy")
+                            .foregroundColor(.white)
+                            .padding(.vertical, 5)
+                            .padding(.horizontal, 10)
+                            .background(Color.blue)
+                            .cornerRadius(5)
+                    }
+                }
+                .padding(.vertical, 5)
+            }
+            if !userPromtMessage.isEmpty {
+                           Text(userPromtMessage)
+                               .font(.subheadline)
+                               .foregroundColor(.red)
+                               .padding(.top, 10)
+                       }
+            Spacer()
+            Button(action: {
+                // Handle purchase action
+            }){
+                Text("Insert Cash")
+                    .foregroundColor(.white)
+                    .padding(.vertical, 10)
+                    .padding(.horizontal, 20)
+                    .background(Color.green)
+                    .cornerRadius(5)
+    
+            }
         }
         
         .padding()
