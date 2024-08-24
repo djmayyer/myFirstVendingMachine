@@ -24,6 +24,7 @@ struct ContentView: View {
     ]
     
     var body: some View {
+        
         VStack {
             Image(systemName: "globe")
                 .imageScale(.large)
@@ -52,10 +53,26 @@ struct ContentView: View {
                 .padding(.vertical, 5)
             }
         }
+        TabView{
+            ViewA()
+                .tabItem(){
+                    Image(systemName: "pencil")
+                    Text("Settings")
+                }
+            ViewB()
+            .tabItem(){
+                Image(systemName: "phone.fill")
+                Text("Calls")
+            }
+            ViewC()
+            .tabItem(){
+                Image(systemName: "globe")
+                Text("World")
+            }
+        }
         .padding()
     }
 }
-
 #Preview {
     ContentView()
 }
