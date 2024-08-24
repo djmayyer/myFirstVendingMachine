@@ -14,15 +14,21 @@ struct VendingItem: Identifiable {
 }
 
 struct ContentView: View {
-    // Sample vending machine items
-//    let items = [
-//        VendingItem(name: "Coca Cola", price: 1.50),
-//        VendingItem(name: "Chips Lays", price: 1.00),
-//        VendingItem(name: "Snickers", price: 0.75),
-//        VendingItem(name: "Water", price: 1.25),
-//        VendingItem(name: "Sprite", price: 1.50)
-//    ]
-    
+    /*
+     Vending Machine Item List
+     */
+    let items = [
+        VendingItem(name: "Coca Cola", price: 1.50),
+        VendingItem(name: "Chips Lays", price: 1.00),
+        VendingItem(name: "Snickers", price: 0.75),
+        VendingItem(name: "Water", price: 1.25),
+        VendingItem(name: "Sprite", price: 1.50)
+    ]
+    /*
+     User Balance
+     */
+    @State private var userBalance: Double = 10.00
+    @State private var userPromtMessage: String = ""
     var body: some View {
        
         VStack {
@@ -71,6 +77,18 @@ struct ContentView: View {
         }
         
         .padding()
+    }
+    
+    /*
+     Function for handling the item purchase
+     */
+    func userPurchase(item: VendingItem){
+        if userBalance >= item.price {
+            userBalance -= item.price
+            userPromtMessage = "Purchased \(item.name) for $\(item.price)"
+        } else {
+            userPromtMessage = "Insufficient funds for \(item.name)"
+        }
     }
 }
 #Preview {
