@@ -30,69 +30,52 @@ struct ContentView: View {
     @State private var userBalance: Double = 10.00
     @State private var userPromtMessage: String = ""
     var body: some View {
-        
+       
         VStack {
-            //Globe image
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundStyle(.tint)
-            //H1 Title of the app
-            Text("My First Vending Machine")
+            Text("Welcome to the Vending Machine!")
                 .font(.title)
                 .padding()
-            /*
-             Balance Display
-             */
-            Text("Balance: $\(userBalance, specifier: "%.2f")")
-                .font(.headline)
-                .padding(.bottom, 10)
-            
-            List(items) { item in
-                HStack {
-                    Text(item.name)
-                    Spacer()
-                    Text("$\(item.price, specifier: "%.2f")")
-                    Button(action: {
-                        // Handle purchase action
-                        print("Purchased \(item.name) for $\(item.price)")
-                        userPurchase(item: item)
-                    }) {
-                        Text("Buy")
-                            .foregroundColor(.white)
-                            .padding(.vertical, 5)
-                            .padding(.horizontal, 10)
-                            .background(Color.blue)
-                            .cornerRadius(5)
+            TabView{
+                ViewDrinks()
+                    .tabItem(){
+                        Image(systemName: "cup.and.saucer.fill")
+                        Text("Drinks")
                     }
-                    .disabled(userBalance < item.price)
-                }
-                .padding(.vertical, 5)
-            }
-            
-            if !userPromtMessage.isEmpty {
-                Text(userPromtMessage)
-                    .font(.subheadline)
-                    .foregroundColor(.red)
-                    .padding(.top, 10)
-            }
-        }
-        TabView{
-            ViewA()
+                ViewSnacks()
                 .tabItem(){
-                    Image(systemName: "pencil")
-                    Text("Settings")
+                    Image(systemName: "fork.knife")
+                    Text("Snacks")
                 }
-            ViewB()
-            .tabItem(){
-                Image(systemName: "phone.fill")
-                Text("Calls")
+                ViewSweets()
+                .tabItem(){
+                    Image(systemName: "birthday.cake")
+                    Text("Sweets")
+                }
             }
-            ViewC()
-            .tabItem(){
-                Image(systemName: "globe")
-                Text("World")
-            }
+//            List(items) { item in
+//                HStack {
+//                    Text(item.name)
+//                    Spacer()
+//                    Text("$\(item.price, specifier: "%.2f")")
+//                    Button(action: {
+//                        // Handle purchase action
+//                        print("Purchased \(item.name) for $\(item.price)")
+//                    }) {
+//                        Text("Buy")
+//                            .foregroundColor(.white)
+//                            .padding(.vertical, 5)
+//                            .padding(.horizontal, 10)
+//                            .background(Color.blue)
+//                            .cornerRadius(5)
+//                    }
+//                }
+//                .padding(.vertical, 5)
+//            }
         }
+        
         .padding()
     }
     
